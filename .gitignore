@@ -9,3 +9,5 @@ __pycache__/
 .env
 venv/
 env/
+
+Meta-Llama-3-8B-Instruct.Q4_K_M.gguf
