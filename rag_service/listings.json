@@ -1,0 +1,227 @@
+[
+  {
+    "id": "prop_001",
+    "city": "Tel Aviv",
+    "neighborhood": "Lev HaIr",
+    "street": "Rothschild",
+    "rooms": 2.0,
+    "price": 7000,
+    "description": "Luxury 2-room apartment on Rothschild Boulevard with architectural design, no balcony."
+  },
+  {
+    "id": "prop_002",
+    "city": "Tel Aviv",
+    "neighborhood": "Florentin",
+    "street": "Herzl",
+    "rooms": 3.0,
+    "price": 6500,
+    "description": "Vibrant 3-room apartment in Florentin, close to bars, open balcony."
+  },
+  {
+    "id": "prop_003",
+    "city": "Tel Aviv",
+    "neighborhood": "Old North",
+    "street": "Dizengoff",
+    "rooms": 4.0,
+    "price": 9500,
+    "description": "Spacious 4-room family apartment with a quiet rear view, private parking, and an elevator."
+  },
+  {
+    "id": "prop_004",
+    "city": "Tel Aviv",
+    "neighborhood": "Neve Tzedek",
+    "street": "Shabazi",
+    "rooms": 2.5,
+    "price": 8500,
+    "description": "Charming 2.5-room historic home with high ceilings, private courtyard, and authentic floor tiles."
+  },
+  {
+    "id": "prop_005",
+    "city": "Tel Aviv",
+    "neighborhood": "Ramat Aviv",
+    "street": "Einstein",
+    "rooms": 5.0,
+    "price": 12000,
+    "description": "Modern 5-room penthouse featuring a massive rooftop terrace, smart home systems, and panoramic sea views."
+  },
+  {
+    "id": "prop_006",
+    "city": "Ramat Gan",
+    "neighborhood": "Bursa",
+    "street": "Tuval",
+    "rooms": 3.0,
+    "price": 6000,
+    "description": "High-rise 3-room apartment near the diamond exchange. Features building gym, 24/7 guard, and underground parking."
+  },
+  {
+    "id": "prop_007",
+    "city": "Ramat Gan",
+    "neighborhood": "Marom Naveh",
+    "street": "Tirza",
+    "rooms": 4.0,
+    "price": 7500,
+    "description": "Beautiful 4-room apartment facing the park. Master suite with walk-in closet, upgraded kitchen."
+  },
+  {
+    "id": "prop_008",
+    "city": "Ramat Gan",
+    "neighborhood": "Shikun Vatikim",
+    "street": "Rokach",
+    "rooms": 3.5,
+    "price": 5500,
+    "description": "Quiet 3.5-room apartment near Yarkon Park. Ground floor with a private garden, pet friendly."
+  },
+  {
+    "id": "prop_009",
+    "city": "Jerusalem",
+    "neighborhood": "Rehavia",
+    "street": "Ramban",
+    "rooms": 3.0,
+    "price": 7200,
+    "description": "Classic Jerusalem stone 3-room apartment. Fully furnished, underfloor heating, and a balcony facing a quiet street."
+  },
+  {
+    "id": "prop_010",
+    "city": "Jerusalem",
+    "neighborhood": "Talbiya",
+    "street": "Marcus",
+    "rooms": 4.0,
+    "price": 8800,
+    "description": "Elegant 4-room apartment with high ceilings, large windows, and a dedicated parking spot."
+  },
+  {
+    "id": "prop_011",
+    "city": "Jerusalem",
+    "neighborhood": "Nachlaot",
+    "street": "Agripas",
+    "rooms": 2.0,
+    "price": 5000,
+    "description": "Cozy 2-room apartment in a historic courtyard. Authentic arches, walking distance to Mahane Yehuda market."
+  },
+  {
+    "id": "prop_012",
+    "city": "Haifa",
+    "neighborhood": "Carmel Center",
+    "street": "Moriah",
+    "rooms": 3.0,
+    "price": 4500,
+    "description": "Bright 3-room apartment with breathtaking Mediterranean sea views. Central heating, close to Carmelit."
+  },
+  {
+    "id": "prop_013",
+    "city": "Haifa",
+    "neighborhood": "Bat Galim",
+    "street": "HaAliya",
+    "rooms": 2.0,
+    "price": 3800,
+    "description": "Renovated 2-room beachfront apartment. Perfect for a single or couple, modern appliances included."
+  },
+  {
+    "id": "prop_014",
+    "city": "Haifa",
+    "neighborhood": "Neve Sha'anan",
+    "street": "Trumpeldor",
+    "rooms": 4.0,
+    "price": 5200,
+    "description": "Large 4-room apartment close to the Technion. Fully equipped for students or a family, shared garden."
+  },
+  {
+    "id": "prop_015",
+    "city": "Herzliya",
+    "neighborhood": "Herzliya Pituah",
+    "street": "HaNasi",
+    "rooms": 5.0,
+    "price": 18000,
+    "description": "Luxurious 5-room villa with a private swimming pool, landscaped garden, and high-end finishes throughout."
+  },
+  {
+    "id": "prop_016",
+    "city": "Herzliya",
+    "neighborhood": "City Center",
+    "street": "Sokolov",
+    "rooms": 3.0,
+    "price": 5800,
+    "description": "New contractor 3-room apartment. Features a Mamad (safe room), sun balcony, and private parking."
+  },
+  {
+    "id": "prop_017",
+    "city": "Herzliya",
+    "neighborhood": "Green Zone",
+    "street": "Ben Gurion",
+    "rooms": 4.0,
+    "price": 7000,
+    "description": "Spacious 4-room apartment with parquet floors, designer kitchen, and open views to the park."
+  },
+  {
+    "id": "prop_018",
+    "city": "Netanya",
+    "neighborhood": "Ir Yamim",
+    "street": "Ben Gurion",
+    "rooms": 4.0,
+    "price": 8000,
+    "description": "Stunning 4-room apartment in a luxury tower. Sea view, gym, pool, and 2 parking spaces."
+  },
+  {
+    "id": "prop_019",
+    "city": "Netanya",
+    "neighborhood": "Ramat Poleg",
+    "street": "Ehud Manor",
+    "rooms": 5.0,
+    "price": 9500,
+    "description": "Massive 5-room duplex with sea view, large terrace for entertaining, and upgraded bathrooms."
+  },
+  {
+    "id": "prop_020",
+    "city": "Rishon LeZion",
+    "neighborhood": "Neve Dekalim",
+    "street": "HaShikma",
+    "rooms": 3.0,
+    "price": 5200,
+    "description": "Cozy 3-room unit with a separate entrance. Includes all bills except electricity, quiet neighborhood."
+  },
+  {
+    "id": "prop_021",
+    "city": "Rishon LeZion",
+    "neighborhood": "West",
+    "street": "Moshe Dayan",
+    "rooms": 4.0,
+    "price": 6500,
+    "description": "Spacious 4-room apartment in a new building. Excellent layout, huge balcony, close to the mall and cinema."
+  },
+  {
+    "id": "prop_022",
+    "city": "Rishon LeZion",
+    "neighborhood": "City Center",
+    "street": "Rothschild",
+    "rooms": 2.5,
+    "price": 4800,
+    "description": "Renovated 2.5-room apartment on the main street. Immediate entry, AC in every room, no elevator."
+  },
+  {
+    "id": "prop_023",
+    "city": "Givatayim",
+    "neighborhood": "Green Neighborhood",
+    "street": "Ben Gurion",
+    "rooms": 3.5,
+    "price": 5800,
+    "description": "Lovely 3.5-room apartment, very well maintained. Safe room included, perfect for young couples."
+  },
+  {
+    "id": "prop_024",
+    "city": "Givatayim",
+    "neighborhood": "Borochov",
+    "street": "Borochov",
+    "rooms": 3.0,
+    "price": 6200,
+    "description": "Classic 3-room apartment in the highly desired Borochov area. Wraparound balcony, tree-lined street."
+  },
+  {
+    "id": "prop_025",
+    "city": "Petah Tikva",
+    "neighborhood": "Em HaMoshavot",
+    "street": "HaMaccabim",
+    "rooms": 4.0,
+    "price": 6000,
+    "description": "Modern 4-room apartment with a huge balcony. Building offers a tenants' club, gym, and 2 elevators."
+  }
+]
