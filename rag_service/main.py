@@ -29,7 +29,7 @@ class LocalLlamaMicroservice(LLM):
     This fulfills the requirement to use LangChain for LLM invocation while 
     maintaining our robust GPU-accelerated microservice architecture.
     """
-    api_url: str = "http://127.0.0.1:8080/generate"
+    api_url: str = "http://127.0.0.1:11434/api/generate"
     
     def _call(self, prompt: str, stop: Optional[List[str]] = None, **kwargs: Any) -> str:
         try:
@@ -109,12 +109,26 @@ def query_rag(payload: QueryRequest):
     
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "query"])
     
-    # PHASE 3: LangChain LCEL (LangChain Expression Language) Pipeline
-    # This is exactly what the assignment is looking for: chaining components!
-    chain = prompt | llm
-    
-    # Invoke the chain automatically formats the prompt and calls the LLM
-    insight = chain.invoke({"context": context_str, "query": payload.description})
+    # Format the prompt using LangChain to fulfill the assignment requirement
+    formatted_prompt = prompt.format(context=context_str, query=payload.description)
+
+    # PHASE 3: Send directly to Ollama Server
+    import requests
+    insight = "No insight generated."
+    try:
+        response = requests.post("http://127.0.0.1:11434/api/generate", json={
+            "model": "llama3",
+            "prompt": formatted_prompt,
+            "stream": False,
+            "options": {"temperature": 0.1}
+        }, timeout=30)
+        
+        if response.status_code == 200:
+            insight = response.json().get("response", "").strip()
+        else:
+            insight = f"Ollama Error: {response.text}"
+    except Exception as e:
+        insight = f"Could not connect to Ollama service: {e}"
 
     return {
         "similar_listings": similar_listings,
