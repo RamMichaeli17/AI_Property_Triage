@@ -1,0 +1,31 @@
+# =============================================================================
+# config/config.yml - NeMo Guardrails main configuration (Colang 1.0)
+# =============================================================================
+colang_version: "1.0"
+
+models:
+  - type: main
+    # 'openai' engine, routed to Google's OpenAI-compatible Gemini endpoint by
+    # the OPENAI_BASE_URL / OPENAI_API_KEY variables injected in main.py.
+    engine: openai
+    # Gemini model code. Model names change often - check the Gemini API model
+    # list. You can override this without editing the file by setting the
+    # GUARDRAILS_LLM_MODEL environment variable (handled in main.py).
+    model: gemini-3.5-flash-lite
+    parameters:
+      # Deterministic verdicts: the guard should never be "creative".
+      temperature: 0.0
+      # The guard must never hang a request: cap latency and retry transient
+      # errors (e.g. Gemini 429/5xx) a couple of times before failing closed.
+      timeout: 30
+      max_retries: 2
+
+rails:
+  input:
+    flows:
+      # Runs the `self_check_input` prompt task (see prompts.yml / rails.co)
+      - self check input
+  output:
+    flows:
+      # Runs the `self_check_output` prompt task (see prompts.yml / rails.co)
+      - self check output
