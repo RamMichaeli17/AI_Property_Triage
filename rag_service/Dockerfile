@@ -1,26 +1,25 @@
-# Use a standard Python slim base image
-FROM python:3.10-slim
+# Use a lightweight official Python image
+FROM python:3.11-slim
 
-# Set working directory inside the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy requirements file first to leverage Docker cache
+# Install system build dependencies required for native C/C++ extensions
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the requirements file first to leverage Docker's layer caching
 COPY requirements.txt .
 
-# Install PyTorch with CUDA support
-RUN pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-
-# Install llama-cpp-python pre-compiled for CUDA 12.1 for GPU acceleration
-RUN pip install --no-cache-dir llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cu121
-
-# Install the rest of the required Python packages
+# Install dependencies without storing unnecessary cache files
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application source code
+# Copy the rest of the application code
 COPY . .
 
-# Expose the application port
-EXPOSE 8000
+# Document that the container listens on port 8001
+EXPOSE 8001
 
-# Run the FastAPI server using uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# Command to run the Uvicorn server, bound to all network interfaces (0.0.0.0)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]
