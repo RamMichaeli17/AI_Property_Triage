@@ -1,3 +1,4 @@
+import os
 import requests
 from typing import Dict, Any
 
@@ -9,8 +10,9 @@ IMAGE_TOOL_DESCRIPTION_V1 = """
 Useful for analyzing property images, detecting room types (e.g., kitchen, bathroom), and calculating condition scores (1-5).
 """
 
-RAG_SERVICE_URL = "http://127.0.0.1:8001/query/"
-IMAGE_SERVICE_URL = "http://127.0.0.1:8002/analyse"
+# Endpoints configuration with fallback to local development URLs
+RAG_SERVICE_URL = os.getenv("RAG_SERVICE_URL", "http://127.0.0.1:8001/query/")
+IMAGE_SERVICE_URL = os.getenv("IMAGE_SERVICE_URL", "http://127.0.0.1:8002/analyse")
 
 def call_rag_service(query: str) -> Dict[str, Any]:
     try:

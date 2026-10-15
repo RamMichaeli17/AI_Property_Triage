@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 from typing import Literal
@@ -5,8 +6,10 @@ from langgraph.graph import StateGraph, END
 from state import AgentState
 from tools import AVAILABLE_TOOLS, RAG_TOOL_DESCRIPTION_V1, IMAGE_TOOL_DESCRIPTION_V1
 
-# Local Llama 3 API running on Bare Metal / GPU (port 8080)
-LLM_API_URL = "http://127.0.0.1:11434/api/generate"
+# Dynamic host configuration: fallback to localhost for direct python execution,
+# or override via environment variable (e.g. host.docker.internal when containerised)
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
+LLM_API_URL = f"{OLLAMA_HOST}/api/generate"
 
 def call_local_llm(prompt: str) -> str:
     """Helper function to send prompts to Ollama."""

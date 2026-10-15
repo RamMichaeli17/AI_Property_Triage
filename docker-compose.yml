@@ -51,6 +51,11 @@ services:
       - "8004:8004"
     environment:
       - PYTHONUNBUFFERED=1
+      # Connects out to Ollama running on the Windows host machine
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      # Connects across the Docker network to sibling microservices
+      - RAG_SERVICE_URL=http://rag-service:8001/query/
+      - IMAGE_SERVICE_URL=http://image-service:8002/analyse
     extra_hosts:
       # Enables communication back to host-level models and services
       - "host.docker.internal:host-gateway"
