@@ -1,13 +1,31 @@
-# Database
-chroma_db/
-
-# Python
-__pycache__/
-*.pyc
-
-# Environments
+# Environment & Secrets
 .env
-venv/
-env/
+*.env
+!.env.example
 
-Meta-Llama-3-8B-Instruct.Q4_K_M.gguf
+# Python Virtual Environments & Cache
+*venv*/
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Local Databases & Heavy Model Checkpoints
+chroma_db/
+*.gguf
+*.bin
+*.pth
+
+# Image Datasets & Temporary Dumps
+image_analyser/dataset/
+raw_dataset/
+project_dump.txt
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

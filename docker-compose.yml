@@ -1,0 +1,81 @@
+services:
+  # Service 1: RAG Service (FastAPI + ChromaDB + LangChain)
+  rag-service:
+    build:
+      context: ./rag_service
+      dockerfile: Dockerfile
+    container_name: rag_service
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Service 2: Image Analyser Service (FastAPI + PyTorch ResNet-50)
+  image-service:
+    build:
+      context: ./image_analyser
+      dockerfile: Dockerfile
+    container_name: image_analyser
+    ports:
+      - "8002:8002"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # Service 3: Guardrails Service (FastAPI + NeMo Guardrails)
+  guardrails-service:
+    build:
+      context: ./guardrails_service
+      dockerfile: Dockerfile
+    container_name: guardrails_service
+    ports:
+      - "8003:8003"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Service 4: LangGraph Agent (FastAPI + LangGraph stateful workflow)
+  langgraph-agent:
+    build:
+      context: ./langgraph_agent
+      dockerfile: Dockerfile
+    container_name: langgraph_agent
+    ports:
+      - "8004:8004"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - RAG_SERVICE_URL=http://rag-service:8001/query/
+      - IMAGE_SERVICE_URL=http://image-service:8002/analyse
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Layer 2: n8n Workflow Orchestration
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678/
+    volumes:
+      - n8n_data:/home/node/.n8n
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  n8n_data:
+    external: true

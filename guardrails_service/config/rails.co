@@ -1,0 +1,28 @@
+# =============================================================================
+# config/rails.co - Colang 1.0 self-checking rails
+# =============================================================================
+
+# Refusal message emitted when the INPUT rail rejects the text.
+# main.py detects the "FAIL:" prefix and extracts the reason from what follows.
+define bot refuse input
+  "FAIL: The submitted text was rejected by policy: it is not a genuine property listing, or it contains spam, offensive content, off-topic material, or a request for legal or tax advice."
+
+# Refusal message emitted when the OUTPUT rail blocks the report.
+define bot refuse output
+  "FAIL: The report was blocked by policy: it contains false legal claims, invented prices or guarantees, or fabricated certifications."
+
+# Input rail: `self_check_input` returns True when the text is allowed.
+define flow self check input
+  $allowed = execute self_check_input
+
+  if not $allowed
+    bot refuse input
+    stop
+
+# Output rail: `self_check_output` returns True when the report is allowed.
+define flow self check output
+  $allowed = execute self_check_output
+
+  if not $allowed
+    bot refuse output
+    stop

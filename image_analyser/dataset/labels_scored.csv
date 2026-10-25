@@ -1,0 +1,201 @@
+filename,room_type,condition_score
+kitchen_001.jpg,kitchen,3
+kitchen_002.jpg,kitchen,4
+kitchen_003.jpg,kitchen,3
+kitchen_004.jpg,kitchen,4
+kitchen_005.jpg,kitchen,3
+kitchen_006.jpg,kitchen,3
+kitchen_007.jpg,kitchen,4
+kitchen_008.jpg,kitchen,4
+kitchen_009.jpg,kitchen,3
+kitchen_010.jpg,kitchen,4
+kitchen_011.jpg,kitchen,4
+kitchen_012.jpg,kitchen,4
+kitchen_013.jpg,kitchen,3
+kitchen_014.jpg,kitchen,3
+kitchen_015.jpg,kitchen,4
+kitchen_016.jpg,kitchen,3
+kitchen_017.jpg,kitchen,3
+kitchen_018.jpg,kitchen,4
+kitchen_019.jpg,kitchen,4
+kitchen_020.jpg,kitchen,3
+kitchen_021.jpg,kitchen,3
+kitchen_022.jpg,kitchen,4
+kitchen_023.jpg,kitchen,3
+kitchen_024.jpg,kitchen,3
+kitchen_025.jpg,kitchen,4
+kitchen_026.jpg,kitchen,3
+kitchen_027.jpg,kitchen,3
+kitchen_028.jpg,kitchen,3
+kitchen_029.jpg,kitchen,4
+kitchen_030.jpg,kitchen,4
+kitchen_031.jpg,kitchen,4
+kitchen_032.jpg,kitchen,3
+kitchen_033.jpg,kitchen,4
+kitchen_034.jpg,kitchen,3
+kitchen_035.jpg,kitchen,4
+kitchen_036.jpg,kitchen,4
+kitchen_037.jpg,kitchen,4
+kitchen_038.jpg,kitchen,3
+kitchen_039.jpg,kitchen,3
+kitchen_040.jpg,kitchen,4
+bathroom_001.jpg,bathroom,3
+bathroom_002.jpg,bathroom,3
+bathroom_003.jpg,bathroom,3
+bathroom_004.jpg,bathroom,3
+bathroom_005.jpg,bathroom,4
+bathroom_006.jpg,bathroom,3
+bathroom_007.jpg,bathroom,2
+bathroom_008.jpg,bathroom,3
+bathroom_009.jpg,bathroom,3
+bathroom_010.jpg,bathroom,3
+bathroom_011.jpg,bathroom,3
+bathroom_012.jpg,bathroom,4
+bathroom_013.jpg,bathroom,4
+bathroom_014.jpg,bathroom,4
+bathroom_015.jpg,bathroom,3
+bathroom_016.jpg,bathroom,3
+bathroom_017.jpg,bathroom,3
+bathroom_018.jpg,bathroom,4
+bathroom_019.jpg,bathroom,4
+bathroom_020.jpg,bathroom,4
+bathroom_021.jpg,bathroom,3
+bathroom_022.jpg,bathroom,3
+bathroom_023.jpg,bathroom,3
+bathroom_024.jpg,bathroom,3
+bathroom_025.jpg,bathroom,4
+bathroom_026.jpg,bathroom,3
+bathroom_027.jpg,bathroom,3
+bathroom_028.jpg,bathroom,3
+bathroom_029.jpg,bathroom,3
+bathroom_030.jpg,bathroom,2
+bathroom_031.jpg,bathroom,3
+bathroom_032.jpg,bathroom,3
+bathroom_033.jpg,bathroom,3
+bathroom_034.jpg,bathroom,3
+bathroom_035.jpg,bathroom,3
+bathroom_036.jpg,bathroom,3
+bathroom_037.jpg,bathroom,4
+bathroom_038.jpg,bathroom,4
+bathroom_039.jpg,bathroom,2
+bathroom_040.jpg,bathroom,3
+bedroom_001.jpg,bedroom,3
+bedroom_002.jpg,bedroom,3
+bedroom_003.jpg,bedroom,2
+bedroom_004.jpg,bedroom,3
+bedroom_005.jpg,bedroom,3
+bedroom_006.jpg,bedroom,3
+bedroom_007.jpg,bedroom,3
+bedroom_008.jpg,bedroom,3
+bedroom_009.jpg,bedroom,3
+bedroom_010.jpg,bedroom,3
+bedroom_011.jpg,bedroom,3
+bedroom_012.jpg,bedroom,3
+bedroom_013.jpg,bedroom,2
+bedroom_014.jpg,bedroom,3
+bedroom_015.jpg,bedroom,3
+bedroom_016.jpg,bedroom,3
+bedroom_017.jpg,bedroom,4
+bedroom_018.jpg,bedroom,3
+bedroom_019.jpg,bedroom,3
+bedroom_020.jpg,bedroom,3
+bedroom_021.jpg,bedroom,2
+bedroom_022.jpg,bedroom,3
+bedroom_023.jpg,bedroom,3
+bedroom_024.jpg,bedroom,3
+bedroom_025.jpg,bedroom,3
+bedroom_026.jpg,bedroom,3
+bedroom_027.jpg,bedroom,4
+bedroom_028.jpg,bedroom,3
+bedroom_029.jpg,bedroom,3
+bedroom_030.jpg,bedroom,3
+bedroom_031.jpg,bedroom,2
+bedroom_032.jpg,bedroom,2
+bedroom_033.jpg,bedroom,2
+bedroom_034.jpg,bedroom,2
+bedroom_035.jpg,bedroom,3
+bedroom_036.jpg,bedroom,3
+bedroom_037.jpg,bedroom,4
+bedroom_038.jpg,bedroom,3
+bedroom_039.jpg,bedroom,3
+bedroom_040.jpg,bedroom,3
+livingRoom_001.jpg,living room,3
+livingRoom_002.jpg,living room,3
+livingRoom_003.jpg,living room,4
+livingRoom_004.jpg,living room,3
+livingRoom_005.jpg,living room,4
+livingRoom_006.jpg,living room,3
+livingRoom_007.jpg,living room,3
+livingRoom_008.jpg,living room,4
+livingRoom_009.jpg,living room,4
+livingRoom_010.jpg,living room,3
+livingRoom_011.jpg,living room,3
+livingRoom_012.jpg,living room,4
+livingRoom_013.jpg,living room,4
+livingRoom_014.jpg,living room,3
+livingRoom_015.jpg,living room,3
+livingRoom_016.jpg,living room,3
+livingRoom_017.jpg,living room,3
+livingRoom_018.jpg,living room,4
+livingRoom_019.jpg,living room,3
+livingRoom_020.jpg,living room,3
+livingRoom_021.jpg,living room,4
+livingRoom_022.jpg,living room,3
+livingRoom_023.jpg,living room,3
+livingRoom_024.jpg,living room,3
+livingRoom_025.jpg,living room,3
+livingRoom_026.jpg,living room,3
+livingRoom_027.jpg,living room,3
+livingRoom_028.jpg,living room,3
+livingRoom_029.jpg,living room,4
+livingRoom_030.jpg,living room,3
+livingRoom_031.jpg,living room,3
+livingRoom_032.jpg,living room,3
+livingRoom_033.jpg,living room,3
+livingRoom_034.jpg,living room,3
+livingRoom_035.jpg,living room,3
+livingRoom_036.jpg,living room,3
+livingRoom_037.jpg,living room,3
+livingRoom_038.jpg,living room,3
+livingRoom_039.jpg,living room,3
+livingRoom_040.jpg,living room,4
+frontyard_001.jpg,exterior,3
+frontyard_002.jpg,exterior,3
+frontyard_003.jpg,exterior,3
+frontyard_004.jpg,exterior,4
+frontyard_005.jpg,exterior,4
+frontyard_006.jpg,exterior,4
+frontyard_007.jpg,exterior,3
+frontyard_008.jpg,exterior,3
+frontyard_009.jpg,exterior,3
+frontyard_010.jpg,exterior,4
+frontyard_011.jpg,exterior,3
+frontyard_012.jpg,exterior,4
+frontyard_013.jpg,exterior,3
+frontyard_014.jpg,exterior,3
+frontyard_015.jpg,exterior,3
+frontyard_016.jpg,exterior,3
+frontyard_017.jpg,exterior,3
+frontyard_018.jpg,exterior,3
+frontyard_019.jpg,exterior,4
+frontyard_020.jpg,exterior,4
+backyard_001.jpg,exterior,3
+backyard_002.jpg,exterior,3
+backyard_003.jpg,exterior,3
+backyard_004.jpg,exterior,3
+backyard_005.jpg,exterior,4
+backyard_006.jpg,exterior,3
+backyard_007.jpg,exterior,3
+backyard_008.jpg,exterior,3
+backyard_009.jpg,exterior,3
+backyard_010.jpg,exterior,3
+backyard_011.jpg,exterior,3
+backyard_012.jpg,exterior,3
+backyard_013.jpg,exterior,2
+backyard_014.jpg,exterior,3
+backyard_015.jpg,exterior,3
+backyard_016.jpg,exterior,3
+backyard_017.jpg,exterior,3
+backyard_018.jpg,exterior,3
+backyard_019.jpg,exterior,3
+backyard_020.jpg,exterior,3

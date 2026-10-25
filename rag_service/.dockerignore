@@ -1,5 +1,6 @@
-# התעלמות ממסד הנתונים
-chroma_db/
-
-# התעלמות ממודלי שפה כבדים
+venv/
+__pycache__/
 *.gguf
+*.bin
+chroma_db/
+.git/
