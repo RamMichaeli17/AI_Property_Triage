@@ -11,8 +11,8 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🏡 AI Property Triage Platform")
-st.caption("Layer 1: Conversational Assistant & Property Submission Portal")
+st.title("🏘️ AI Property Triage Platform")
+st.caption("Conversational Market Assistant & Automated Property Submission Portal")
 
 # ==============================================================================
 # Global Configuration & Endpoints
@@ -21,13 +21,13 @@ OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434/api/chat")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
 
 # Default local n8n webhook URL (can be customized via the sidebar if needed)
-DEFAULT_N8N_WEBHOOK = "http://localhost:5678/webhook/listing-submission"
+DEFAULT_N8N_WEBHOOK = os.getenv("N8N_WEBHOOK_URL", "http://localhost:5678/webhook/submit-property")
 
 # Sidebar configuration for network flexibility
 with st.sidebar:
     st.header("⚙️ System Settings")
     n8n_webhook_url = st.text_input(
-        "n8n Webhook URL", 
+        "n8n Webhook URL",
         value=DEFAULT_N8N_WEBHOOK,
         help="Target webhook URL configured in your n8n listing submission flow."
     )
@@ -37,7 +37,7 @@ with st.sidebar:
     st.markdown("- n8n Engine: `localhost:5678`")
 
 # ==============================================================================
-# Surface 5: Real Estate Assistant Grounding & Refusal Prompt
+# Real Estate Assistant Grounding & Refusal Prompt
 # ==============================================================================
 OLLAMA_SYSTEM_PROMPT = """You are an expert, professional real estate assistant.
 Your sole purpose is to provide factual, helpful, and concise information about real estate market concepts, property listings, and general property questions.
@@ -51,10 +51,10 @@ STRICT OPERATIONAL GUIDELINES:
 4. NO INVENTED PRICING: Do not fabricate specific property appraisals or guaranteed future values. Always remain factual and conservative."""
 
 # ==============================================================================
-# Main Interface Tabs (Section 5 of Project Guidelines)
+# Main Application Interface Tabs
 # ==============================================================================
 tab_assistant, tab_submission = st.tabs([
-    "💬 Conversational Assistant", 
+    "💬 Conversational Assistant",
     "📋 Submit Listing"
 ])
 
@@ -78,11 +78,9 @@ with tab_assistant:
 
     # Handle incoming user message
     if user_prompt := st.chat_input("Ask a real estate question (e.g., What features increase home value?)..."):
-        # Display user message and append to session state
         st.chat_message("user").markdown(user_prompt)
         st.session_state.messages.append({"role": "user", "content": user_prompt})
 
-        # Build payload with system prompt grounding and full conversation history
         ollama_payload = {
             "model": OLLAMA_MODEL,
             "messages": [
@@ -92,7 +90,6 @@ with tab_assistant:
             "stream": False
         }
 
-        # Query local Ollama instance
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
@@ -118,13 +115,13 @@ with tab_submission:
 
     with st.form("listing_submission_form"):
         agent_name = st.text_input("Listing Agent Name", placeholder="e.g., Jane Doe")
-        
+
         description = st.text_area(
-            "Property Description Text", 
+            "Property Description Text",
             placeholder="e.g., Spacious 3-bedroom apartment in Tel Aviv with balcony and elevator...",
             height=160
         )
-        
+
         image_urls_raw = st.text_input(
             "Property Image URLs (comma-separated)",
             placeholder="e.g., https://example.com/kitchen.jpg, https://example.com/living.jpg"
@@ -132,19 +129,16 @@ with tab_submission:
 
         submitted = st.form_submit_button("🚀 Submit to n8n Pipeline")
 
-    # Processing submission
     if submitted:
         if not description.strip():
             st.warning("Please provide a property description before submitting.")
         else:
-            # Parse comma-separated image URLs into a clean list
             image_urls_list = [url.strip() for url in image_urls_raw.split(",") if url.strip()]
 
-            # Build request payload matching n8n Webhook trigger expectations
             payload = {
                 "agent_name": agent_name.strip() if agent_name else "Agent",
                 "description": description.strip(),
-                "text": description.strip(),  # Backward compatibility for Guardrails node
+                "text": description.strip(),
                 "image_urls": image_urls_list
             }
 
@@ -152,37 +146,38 @@ with tab_submission:
             with st.spinner("Processing listing through AI services (Guardrails, Extractor, Vision, RAG)..."):
                 try:
                     response = requests.post(n8n_webhook_url, json=payload, timeout=120)
-                    
+
                     if response.status_code == 200:
                         result_data = response.json()
                         st.success("Triage pipeline completed successfully!")
 
-                        # Check if response is a rejected guardrail or a completed report
                         if isinstance(result_data, dict):
                             # Case A: Input or Output Guardrail failed
-                            if result_data.get("pass") is False or "rejected" in result_data or "reason" in result_data and result_data.get("pass") is not True:
+                            if result_data.get("pass") is False or "rejected" in result_data or (
+                                "reason" in result_data and result_data.get("pass") is not True
+                            ):
                                 st.error("⚠️ Submission Flagged by Guardrails Policy")
                                 reason = result_data.get("reason", "The submission failed platform compliance rules.")
                                 st.warning(f"**Rejection Reason:** {reason}")
-                            
+
                             # Case B: Standard successful brief returned from LLM Chain
                             elif "report" in result_data or "listing_brief" in result_data:
                                 report_content = result_data.get("report") or result_data.get("listing_brief")
                                 st.markdown("### 📄 Generated Listing Brief")
                                 st.markdown(report_content)
-                            
+
                             # Case C: Generic structured JSON returned
                             else:
                                 st.markdown("### 📊 Pipeline Output Data")
                                 st.json(result_data)
-                        
+
                         elif isinstance(result_data, str):
                             st.markdown("### 📄 Pipeline Response")
                             st.markdown(result_data)
 
                     else:
                         st.error(f"n8n Webhook returned error HTTP {response.status_code}: {response.text}")
-                
+
                 except requests.exceptions.ConnectionError:
                     st.error(f"Failed to connect to n8n at `{n8n_webhook_url}`. Make sure n8n is running and listening.")
                 except requests.exceptions.Timeout:

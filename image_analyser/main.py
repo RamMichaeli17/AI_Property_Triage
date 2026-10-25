@@ -9,33 +9,35 @@ import torchvision.transforms as transforms
 import torch.nn.functional as F
 from model import RealEstateAnalyzer
 
-# Initialize FastAPI
-app = FastAPI(title="Image Analyser Service")
+app = FastAPI(
+    title="Image Analyser Service",
+    description="Dual-head ResNet-50 service for room classification and condition scoring.",
+    version="1.0.0",
+)
 
-# Define the Input Schema
+
 class ImageRequest(BaseModel):
     image_url: str
 
-# Configuration & Setup
-DEVICE = torch.device("cpu")
-ROOM_CLASSES = ['bathroom', 'bedroom', 'exterior', 'kitchen', 'living room', 'other']
-CONFIDENCE_THRESHOLD = 0.60  # If confidence is below 60%, return 'uncertain'
 
-# Load the trained model
+DEVICE = torch.device("cpu")
+ROOM_CLASSES = ["bathroom", "bedroom", "exterior", "kitchen", "living room", "other"]
+CONFIDENCE_THRESHOLD = 0.60  # Return 'uncertain' when max probability is below 60%
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(SCRIPT_DIR, "model.pth")
 
 model = RealEstateAnalyzer(num_room_classes=len(ROOM_CLASSES)).to(DEVICE)
 model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE, weights_only=True))
-model.eval() # Set to evaluation mode
+model.eval()
 
-# Image Preprocessing (Must perfectly match the test_transform from dataset_loader)
 preprocess = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.CenterCrop(224),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
+
 
 @app.post("/analyse")
 async def analyse_image(request: ImageRequest):
@@ -43,7 +45,7 @@ async def analyse_image(request: ImageRequest):
     try:
         response = requests.get(request.image_url, timeout=10)
         response.raise_for_status()
-        image = Image.open(BytesIO(response.content)).convert('RGB')
+        image = Image.open(BytesIO(response.content)).convert("RGB")
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to load image from URL: {str(e)}")
 
@@ -54,7 +56,7 @@ async def analyse_image(request: ImageRequest):
     with torch.no_grad():
         room_logits, condition_score = model(input_tensor)
 
-    # 4. Calculate Room Confidence (Softmax converts logits to percentages 0.0 - 1.0)
+    # 4. Calculate Room Confidence
     probabilities = F.softmax(room_logits, dim=1)[0]
     max_prob, predicted_idx = torch.max(probabilities, 0)
     confidence = max_prob.item()
@@ -70,9 +72,9 @@ async def analyse_image(request: ImageRequest):
     clamped_score = max(1.0, min(5.0, raw_score))
     final_score = int(round(clamped_score))
 
-    # 7. Return exact JSON Response format required by assignment
+    # 7. Return standardized JSON response payload
     return {
         "room_type": predicted_room,
         "condition_score": final_score,
-        "confidence": round(confidence, 2)
+        "confidence": round(confidence, 2),
     }
